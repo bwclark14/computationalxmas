@@ -330,7 +330,7 @@ function showResults() {
             listItem.textContent = `Q${index + 1}: Correct!`;
         } else {
             listItem.classList.add("incorrect");
-            listItem.textContent = `Q${index + 1}: Incorrect. The correct answer is "${question.correct}".`;
+            listItem.textContent = `Q${index + 1}: Incorrect.`;
         }
         resultList.appendChild(listItem);
     });
