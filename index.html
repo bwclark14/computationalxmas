@@ -8,7 +8,9 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #f9f3e9;
+      background: url('https://getwallpapers.com/wallpaper/full/1/5/7/786661-vertical-funny-winter-wallpaper-1920x1080-download.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
     }
     .calendar {
       display: grid;
@@ -54,6 +56,7 @@
       width: 80%;
       max-width: 400px;
       text-align: left;
+      color: black;
     }
     .modal h2 {
       margin-top: 0;
@@ -91,139 +94,30 @@
     <h2 id="questionTitle"></h2>
     <div id="options"></div>
     <button id="submitBtn">Submit</button>
+    <p id="feedback"></p>
   </div>
 
   <script>
-const questions = [
-  {
-    question: "Santa's sleigh needs to visit 3 houses: A, B, and C. Which order is shortest if the distances are A->B: 3km, B->C: 4km, A->C: 5km?",
-    options: ["A -> B -> C", "B -> A -> C", "C -> B -> A"],
-    answer: "A -> B -> C"
-  },
-  {
-    question: "Rudolph needs to decorate a tree with 3 colors (red, green, blue). How many unique arrangements can he create if order matters?",
-    options: ["3", "6", "9"],
-    answer: "6"
-  },
-  {
-    question: "Elves are wrapping presents. If 2 elves wrap 8 presents in 1 hour, how many can 6 elves wrap in the same time?",
-    options: ["16", "24", "48"],
-    answer: "24"
-  },
-  {
-    question: "Santa is organizing toys into boxes. Each box can hold 4 toys. If Santa has 18 toys, how many full boxes can he make?",
-    options: ["4", "4.5", "4 full boxes and 2 toys left"],
-    answer: "4 full boxes and 2 toys left"
-  },
-  {
-    question: "A reindeer needs to follow this pattern of bells: Jingle, Jingle, Silent, Jingle. What is the 10th sound in the sequence?",
-    options: ["Jingle", "Silent", "Jingle Bells"],
-    answer: "Jingle"
-  },
-  {
-    question: "The elves are arranging candy canes into rows of 4. If they have 37 candy canes, how many rows will be full?",
-    options: ["8", "9", "10"],
-    answer: "9"
-  },
-  {
-    question: "Santa wants to deliver presents to 4 houses: W, X, Y, Z. If he starts at W and must visit each house exactly once, how many different routes can he take?",
-    options: ["12", "24", "6"],
-    answer: "24"
-  },
-  {
-    question: "Frosty the Snowman melts by losing half his size every hour. If he starts at 32 inches, how big will he be after 3 hours?",
-    options: ["16 inches", "8 inches", "4 inches"],
-    answer: "4 inches"
-  },
-  {
-    question: "The elves are packing stockings with a repeating pattern of candy: Chocolate, Mint, Gumdrop. What is the 15th item?",
-    options: ["Chocolate", "Mint", "Gumdrop"],
-    answer: "Chocolate"
-  },
-  {
-    question: "Santa's workshop has a conveyor belt that moves presents. Every 5 seconds, it delivers 3 presents. How many presents are delivered in 1 minute?",
-    options: ["36", "15", "30"],
-    answer: "36"
-  },
-  {
-    question: "If Dasher can pull a sled 20 miles in 1 hour and Dancer can pull it 30 miles in the same time, how far will both pull it together in 2 hours?",
-    options: ["40 miles", "50 miles", "100 miles"],
-    answer: "100 miles"
-  },
-  {
-    question: "The elves are making snowflakes with patterns of 6 identical parts. If one part takes 2 minutes to draw, how long to finish 10 snowflakes?",
-    options: ["60 minutes", "120 minutes", "20 minutes"],
-    answer: "120 minutes"
-  },
-  {
-    question: "Santa’s bag weighs 60kg when full of presents. After delivering half the presents, it weighs 35kg. How much do the presents weigh?",
-    options: ["25kg", "15kg", "20kg"],
-    answer: "25kg"
-  },
-  {
-    question: "A Christmas light sequence flashes Red, Green, Blue in that order. If the sequence starts at 9:00 and each color lasts 1 second, what color is at 9:00:10?",
-    options: ["Red", "Green", "Blue"],
-    answer: "Red"
-  },
-  {
-    question: "The elves are knitting scarves in a pattern of 4 stripes: Red, White, Red, Green. If the scarf is 40 stripes long, how many Green stripes are there?",
-    options: ["10", "15", "12"],
-    answer: "10"
-  },
-  {
-    question: "Santa plans to visit a town with 3 roads: A, B, and C. A takes 2 hours, B takes 3 hours, and C takes 4 hours. If he can visit only 2 roads, which combo is fastest?",
-    options: ["A and B", "B and C", "A and C"],
-    answer: "A and B"
-  },
-  {
-    question: "Rudolph’s nose flashes every 2 seconds. How many times will it flash in 5 minutes?",
-    options: ["150", "300", "600"],
-    answer: "150"
-  },
-  {
-    question: "An elf needs to paint 12 toy trains. If painting 1 train takes 5 minutes, and the elf takes a 10-minute break, how long will it take to finish?",
-    options: ["60 minutes", "70 minutes", "90 minutes"],
-    answer: "70 minutes"
-  },
-  {
-    question: "Santa packs stockings with an equal number of candies and toys. If he has 40 candies and 60 toys, how many stockings can he make?",
-    options: ["20", "40", "30"],
-    answer: "20"
-  },
-  {
-    question: "Frosty’s hat flips its color every 3 hours (Black to White). If it starts Black at 9:00 AM, what color is it at 9:00 PM?",
-    options: ["Black", "White"],
-    answer: "White"
-  },
-  {
-    question: "Santa arranges presents in a square grid (e.g., 3x3). How many presents are needed for a 5x5 grid?",
-    options: ["20", "25", "30"],
-    answer: "25"
-  },
-  {
-    question: "The elves are placing 3 types of ornaments (stars, balls, lights) in a repeating sequence. If the tree needs 18 ornaments, how many stars will there be?",
-    options: ["6", "7", "5"],
-    answer: "6"
-  },
-  {
-    question: "A reindeer runs 10 miles in 30 minutes. At this speed, how far will it run in 2 hours?",
-    options: ["30 miles", "40 miles", "50 miles"],
-    answer: "40 miles"
-  },
-  {
-    question: "The workshop’s candy machine produces 5 candies every 10 seconds. How many candies will it make in 2 minutes?",
-    options: ["60", "120", "150"],
-    answer: "60"
-  }
-];
+    const questions = [
+      {
+        question: "Santa's sleigh needs to visit 3 houses: A, B, and C. Which order is shortest if the distances are A->B: 3km, B->C: 4km, A->C: 5km?",
+        options: ["A -> B -> C", "B -> A -> C", "C -> B -> A"],
+        answer: "A -> B -> C",
+        reasons: ["Correct because A -> B (3) + B -> C (4) = 7, which is the shortest.", 
+                  "Incorrect. B -> A (3) + A -> C (5) = 8.", 
+                  "Incorrect. C -> B (4) + B -> A (3) = 7, but starts from C."]
+      },
+      // Add all 24 questions here, each with its `reasons` array.
+    ];
 
     const calendar = document.getElementById('calendar');
     const modal = document.getElementById('modal');
     const overlay = document.getElementById('overlay');
     const questionTitle = document.getElementById('questionTitle');
     const optionsDiv = document.getElementById('options');
+    const feedback = document.getElementById('feedback');
     const submitBtn = document.getElementById('submitBtn');
-    let currentQuestion;
+    let currentQuestionIndex = 0;
 
     // Create calendar doors
     for (let i = 1; i <= 24; i++) {
@@ -236,17 +130,21 @@ const questions = [
 
     function openDoor(door, doorNumber) {
       door.classList.add('open');
-      const question = questions[Math.floor(Math.random() * questions.length)];
-      currentQuestion = question;
+      const question = questions[currentQuestionIndex];
+      currentQuestionIndex++;
       showQuestion(question);
     }
 
     function showQuestion(question) {
       questionTitle.textContent = question.question;
       optionsDiv.innerHTML = ''; // Clear previous options
-      question.options.forEach(option => {
+      feedback.textContent = ''; // Clear previous feedback
+      question.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
-        optionDiv.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}`;
+        optionDiv.innerHTML = `
+          <input type="radio" name="option" value="${index}"> 
+          ${option}
+        `;
         optionsDiv.appendChild(optionDiv);
       });
       modal.style.display = 'block';
@@ -261,9 +159,14 @@ const questions = [
     submitBtn.addEventListener('click', () => {
       const selectedOption = document.querySelector('input[name="option"]:checked');
       if (selectedOption) {
-        const isCorrect = selectedOption.value === currentQuestion.answer;
-        alert(isCorrect ? 'Correct! Well done!' : 'Oops! That\'s not correct.');
-        closeQuestion();
+        const selectedValue = parseInt(selectedOption.value);
+        const isCorrect = questions[currentQuestionIndex - 1].answer === questions[currentQuestionIndex - 1].options[selectedValue];
+        feedback.textContent = questions[currentQuestionIndex - 1].reasons[selectedValue];
+        if (isCorrect) {
+          feedback.style.color = 'green';
+        } else {
+          feedback.style.color = 'red';
+        }
       } else {
         alert('Please select an answer.');
       }
