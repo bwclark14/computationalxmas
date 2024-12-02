@@ -300,25 +300,28 @@
         }
 
 function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
+    if (currentQuestionIndex >= questions.length - 1) {
+        showResults();
     } else {
-        showResults();  // Ensure this runs after the last question
+        currentQuestionIndex++;
+        loadQuestion();
     }
 }
+
 
 function showResults() {
     const quizContainer = document.getElementById("quizContainer");
     const resultContainer = document.getElementById("resultContainer");
     const resultMessage = document.getElementById("resultMessage");
     const resultList = document.getElementById("resultList");
+     alert("Showing results!");
 
     // Hide the quiz container
     quizContainer.style.display = 'none';
 
     // Show the result container
     resultContainer.style.display = 'block';
+    alert("see this!");
 
     // Calculate correct answers
     let correctAnswers = 0;
