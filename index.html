@@ -99,16 +99,147 @@
 
   <script>
     const questions = [
-      {
-        question: "Santa's sleigh needs to visit 3 houses: A, B, and C. Which order is shortest if the distances are A->B: 3km, B->C: 4km, A->C: 5km?",
-        options: ["A -> B -> C", "B -> A -> C", "C -> B -> A"],
-        answer: "A -> B -> C",
-        reasons: ["Correct because A -> B (3) + B -> C (4) = 7, which is the shortest.", 
-                  "Incorrect. B -> A (3) + A -> C (5) = 8.", 
-                  "Incorrect. C -> B (4) + B -> A (3) = 7, but starts from C."]
-      },
-      // Add all 24 questions here, each with its `reasons` array.
-    ];
+  {
+    question: "Santa's sleigh needs to deliver presents to 3 houses: A, B, and C. If the distances are A->B: 2km, B->C: 3km, and A->C: 5km, what is the shortest route?",
+    options: ["A -> B -> C", "B -> A -> C", "A -> C -> B"],
+    answer: "A -> B -> C",
+    feedback: [
+      "Correct! A -> B -> C covers 2 + 3 = 5km, the shortest distance.",
+      "Incorrect. B -> A -> C is 2 + 5 = 7km.",
+      "Incorrect. A -> C -> B is 5 + 3 = 8km."
+    ]
+  },
+  {
+    question: "Rudolph is decorating a Christmas tree with 3 colors: red, green, and blue. How many unique patterns can he create if the order matters?",
+    options: ["3", "6", "9"],
+    answer: "6",
+    feedback: [
+      "Incorrect. 3 represents the number of colors, not permutations.",
+      "Correct! 3! = 3 × 2 × 1 = 6 unique patterns.",
+      "Incorrect. 9 is too high for 3 colors."
+    ]
+  },
+  {
+    question: "Elves are baking cookies. Each batch takes 15 minutes, and the oven can bake 2 batches at once. How long will it take to bake 6 batches?",
+    options: ["45 minutes", "60 minutes", "90 minutes"],
+    answer: "45 minutes",
+    feedback: [
+      "Correct! Each round bakes 2 batches in 15 minutes, so 6 batches take 3 rounds: 3 × 15 = 45 minutes.",
+      "Incorrect. 60 minutes assumes slower baking time.",
+      "Incorrect. 90 minutes is too long."
+    ]
+  },
+  {
+    question: "Frosty the Snowman builds a snow tower with 4 snowballs stacked in increasing size. If the smallest snowball is 10cm wide and each is 5cm larger than the last, what is the total width of the snow tower?",
+    options: ["50cm", "60cm", "70cm"],
+    answer: "60cm",
+    feedback: [
+      "Incorrect. 50cm undercounts the snowball sizes.",
+      "Correct! 10 + 15 + 20 + 25 = 60cm.",
+      "Incorrect. 70cm overcounts the snowball sizes."
+    ]
+  },
+  {
+    question: "The elves are placing stockings in rows of 5. If they have 27 stockings, how many rows will be full?",
+    options: ["5 rows", "6 rows", "5 rows with 2 stockings left over"],
+    answer: "5 rows with 2 stockings left over",
+    feedback: [
+      "Incorrect. 5 rows would only account for 25 stockings.",
+      "Incorrect. 6 rows require 30 stockings.",
+      "Correct! 5 rows account for 25 stockings, with 2 left over."
+    ]
+  },
+  {
+    question: "Santa wants to visit 4 towns: W, X, Y, and Z. If he must visit each town exactly once, how many different routes can he take?",
+    options: ["12", "24", "16"],
+    answer: "24",
+    feedback: [
+      "Incorrect. 12 is half the possible routes.",
+      "Correct! 4! = 4 × 3 × 2 × 1 = 24 routes.",
+      "Incorrect. 16 does not account for all permutations."
+    ]
+  },
+  {
+    question: "Rudolph's nose blinks in a pattern: on, off, on, on, off. What is the 15th blink in the sequence?",
+    options: ["on", "off"],
+    answer: "on",
+    feedback: [
+      "Correct! The pattern repeats every 5 blinks, and the 15th matches the 5th (on).",
+      "Incorrect. Off is the 2nd, 4th, and 14th blink, not the 15th."
+    ]
+  },
+  {
+    question: "An elf places candy canes in boxes of 4. If there are 35 candy canes, how many boxes will be full?",
+    options: ["8", "9", "7"],
+    answer: "8",
+    feedback: [
+      "Correct! 35 ÷ 4 = 8 full boxes with 3 candy canes left.",
+      "Incorrect. 9 assumes more candy canes than available.",
+      "Incorrect. 7 leaves too many candy canes unpacked."
+    ]
+  },
+  {
+    question: "Santa packs presents with an equal number of toys and candies. If he has 40 toys and 60 candies, how many complete presents can he make?",
+    options: ["20", "40", "30"],
+    answer: "20",
+    feedback: [
+      "Correct! 40 toys allow for 20 presents, matching the limiting factor.",
+      "Incorrect. 40 assumes only candies are considered.",
+      "Incorrect. 30 exceeds the number of toys available."
+    ]
+  },
+  {
+    question: "The elves are knitting a scarf with a repeating pattern of 3 stripes: red, white, green. If the scarf is 27 stripes long, how many green stripes are there?",
+    options: ["9", "10", "8"],
+    answer: "9",
+    feedback: [
+      "Correct! Every third stripe is green, so 27 ÷ 3 = 9 green stripes.",
+      "Incorrect. 10 exceeds the total stripes.",
+      "Incorrect. 8 assumes a shorter scarf."
+    ]
+  },
+  {
+    question: "Frosty melts at a rate of half his size every hour. If he starts at 128cm, how tall is he after 3 hours?",
+    options: ["32cm", "64cm", "16cm"],
+    answer: "16cm",
+    feedback: [
+      "Incorrect. 32cm is after 2 hours.",
+      "Incorrect. 64cm is after 1 hour.",
+      "Correct! 128 → 64 → 32 → 16cm."
+    ]
+  },
+  {
+    question: "A reindeer runs 12 miles in 30 minutes. At this speed, how far can it run in 2 hours?",
+    options: ["24 miles", "48 miles", "36 miles"],
+    answer: "48 miles",
+    feedback: [
+      "Incorrect. 24 miles assumes only 1 hour of running.",
+      "Correct! 12 miles per 30 minutes is 24 miles per hour. 24 × 2 = 48 miles.",
+      "Incorrect. 36 miles is too short."
+    ]
+  },
+  {
+    question: "Santa’s workshop has a conveyor belt delivering 5 toys every 10 seconds. How many toys are delivered in 1 minute?",
+    options: ["30", "60", "50"],
+    answer: "30",
+    feedback: [
+      "Correct! 6 cycles of 10 seconds deliver 6 × 5 = 30 toys.",
+      "Incorrect. 60 assumes more toys per cycle.",
+      "Incorrect. 50 overestimates the output."
+    ]
+  },
+  {
+    question: "A Christmas light sequence flashes Red, Green, Blue in that order. If the sequence starts at 9:00 AM, what color flashes at 9:00:10?",
+    options: ["Red", "Green", "Blue"],
+    answer: "Red",
+    feedback: [
+      "Correct! 10 seconds mean 3 complete cycles, starting over with Red.",
+      "Incorrect. Green is the second color in the sequence.",
+      "Incorrect. Blue is the third color, not the tenth flash."
+    ]
+  },
+  // Add 10 more similarly themed questions
+];
 
     const calendar = document.getElementById('calendar');
     const modal = document.getElementById('modal');
