@@ -42,8 +42,9 @@
             list-style-type: none;
             padding: 0;
             display: flex;
-            justify-content: center; /* Center align the options */
+            justify-content: space-between; /* Ensure even spacing */
             gap: 10px; /* Space between the options */
+            flex-wrap: wrap; /* Allow options to wrap on smaller screens */
         }
         .answer-option {
             background-color: #3498db;
@@ -52,8 +53,10 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            flex: 1;
+            flex: 1 1 25%; /* Flex 1 with a minimum of 25% width */
+            max-width: 150px; /* Maximum width to prevent buttons from growing too large */
             text-align: center;
+            margin: 5px; /* Optional: add spacing around each button */
         }
         .answer-option:hover {
             background-color: red;
