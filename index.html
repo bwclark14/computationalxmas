@@ -300,55 +300,39 @@
         }
 
 function nextQuestion() {
-    if (currentQuestionIndex >= questions.length - 1) {
-        showResults();
-    } else {
-        currentQuestionIndex++;
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
         loadQuestion();
+    } else {
+        showResults();  // Ensure this runs after the last question
     }
 }
 
-
 function showResults() {
-    const quizContainer = document.getElementById("quizContainer");
+    document.getElementById("quizContainer").style.display = 'none'; // Hide quiz container
     const resultContainer = document.getElementById("resultContainer");
     const resultMessage = document.getElementById("resultMessage");
     const resultList = document.getElementById("resultList");
-     alert("Showing results!");
 
-    // Hide the quiz container
-    quizContainer.style.display = 'none';
-
-    // Show the result container
-    resultContainer.style.display = 'block';
-    alert("see this!");
-
-    // Calculate correct answers
     let correctAnswers = 0;
-    resultList.innerHTML = ''; // Clear previous results
-alert("setting to 0");
+    resultList.innerHTML = '';  // Clear any previous results
+
     questions.forEach((question, index) => {
         const listItem = document.createElement("div");
+        if (userAnswers[index] === question.correct) {
+            correctAnswers++;
+            listItem.classList.add("correct");
+            listItem.textContent = `Q${index + 1}: Correct!`;
+        } else {
+            listItem.classList.add("incorrect");
+            listItem.textContent = `Q${index + 1}: Incorrect. The correct answer is "${question.correct}".`;
+        }
+        resultList.appendChild(listItem);
+    });
 
-        // Check if the user's answer matches the correct one
-      if (userAnswers[index] === question.correct) {
-    correctAnswers++;
-    listItem.classList.add("correct");
-    listItem.textContent = `Q${index + 1}: Correct!`; 
-          alert("checkec correct");
-} else {
-    listItem.classList.add("incorrect");
-    listItem.textContent = `Q${index + 1}: Incorrect.`; 
-          alert("checkec incorrect");
+    resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`;
+    resultContainer.style.display = 'block'; // Show results
 }
-
-// Append each result to the result list
-resultList.appendChild(listItem);
-
-// Display the total score
-resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`; 
-}
-
 
 
         function restartQuiz() {
