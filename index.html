@@ -41,15 +41,19 @@
         .answer-options {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            justify-content: center; /* Center align the options */
+            gap: 15px; /* Space between the options */
         }
         .answer-option {
             background-color: #3498db;
             color: white;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            flex: 1;
+            text-align: center;
         }
         .answer-option:hover {
             background-color: red;
