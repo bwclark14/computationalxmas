@@ -309,16 +309,25 @@ function nextQuestion() {
 }
 
 function showResults() {
-    document.getElementById("quizContainer").style.display = 'none'; // Hide quiz container
+    const quizContainer = document.getElementById("quizContainer");
     const resultContainer = document.getElementById("resultContainer");
     const resultMessage = document.getElementById("resultMessage");
     const resultList = document.getElementById("resultList");
 
+    // Hide the quiz container
+    quizContainer.style.display = 'none';
+
+    // Show the result container
+    resultContainer.style.display = 'block';
+
+    // Calculate correct answers
     let correctAnswers = 0;
-    resultList.innerHTML = '';  // Clear any previous results
+    resultList.innerHTML = ''; // Clear previous results
 
     questions.forEach((question, index) => {
         const listItem = document.createElement("div");
+
+        // Check if the user's answer matches the correct one
         if (userAnswers[index] === question.correct) {
             correctAnswers++;
             listItem.classList.add("correct");
@@ -327,12 +336,15 @@ function showResults() {
             listItem.classList.add("incorrect");
             listItem.textContent = `Q${index + 1}: Incorrect. The correct answer is "${question.correct}".`;
         }
+
+        // Append each result to the result list
         resultList.appendChild(listItem);
     });
 
+    // Display the total score
     resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`;
-    resultContainer.style.display = 'block'; // Show results
 }
+
 
 
         function restartQuiz() {
