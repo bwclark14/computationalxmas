@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festive Advent Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f3e9;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .door {
+      background-color: #d9534f;
+      color: white;
+      padding: 20px;
+      border: 2px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+    }
+    .door:hover {
+      background-color: #c9302c;
+    }
+    .door.open {
+      background-color: #f0ad4e;
+      pointer-events: none;
+    }
+    .door span {
+      font-size: 1.5em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 2px solid #ccc;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      z-index: 10;
+      width: 80%;
+      max-width: 400px;
+      text-align: left;
+    }
+    .modal h2 {
+      margin-top: 0;
+    }
+    .modal button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Festive Computational Thinking Advent Calendar</h1>
+  <div class="calendar" id="calendar">
+    <!-- Doors will be dynamically created here -->
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="modal">
+    <h2 id="questionTitle"></h2>
+    <div id="options"></div>
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Santa's sleigh needs to visit 3 houses: A, B, and C. Which order is shortest?",
+        options: ["A -> B -> C", "B -> A -> C", "C -> B -> A"],
+        answer: "B -> A -> C"
+      },
+      {
+        question: "Rudolph wants to decorate a tree with 3 colors. How many combinations are there?",
+        options: ["3", "6", "9"],
+        answer: "6"
+      },
+      {
+        question: "Elves are wrapping presents. If 2 elves wrap 6 presents in 1 hour, how many can 4 elves wrap?",
+        options: ["8", "12", "24"],
+        answer: "12"
+      },
+      {
+        question: "Santa sorts presents by color. Which sorting algorithm should he use?",
+        options: ["Bubble Sort", "Quick Sort", "Present Sort"],
+        answer: "Quick Sort"
+      },
+    ];
+
+    const calendar = document.getElementById('calendar');
+    const modal = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
+    const questionTitle = document.getElementById('questionTitle');
+    const optionsDiv = document.getElementById('options');
+    const submitBtn = document.getElementById('submitBtn');
+    let currentQuestion;
+
+    // Create calendar doors
+    for (let i = 1; i <= 24; i++) {
+      const door = document.createElement('div');
+      door.classList.add('door');
+      door.innerHTML = `<span>${i}</span>`;
+      door.addEventListener('click', () => openDoor(door, i));
+      calendar.appendChild(door);
+    }
+
+    function openDoor(door, doorNumber) {
+      door.classList.add('open');
+      const question = questions[Math.floor(Math.random() * questions.length)];
+      currentQuestion = question;
+      showQuestion(question);
+    }
+
+    function showQuestion(question) {
+      questionTitle.textContent = question.question;
+      optionsDiv.innerHTML = ''; // Clear previous options
+      question.options.forEach(option => {
+        const optionDiv = document.createElement('div');
+        optionDiv.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}`;
+        optionsDiv.appendChild(optionDiv);
+      });
+      modal.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    function closeQuestion() {
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+
+    submitBtn.addEventListener('click', () => {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (selectedOption) {
+        const isCorrect = selectedOption.value === currentQuestion.answer;
+        alert(isCorrect ? 'Correct! Well done!' : 'Oops! That\'s not correct.');
+        closeQuestion();
+      } else {
+        alert('Please select an answer.');
+      }
+    });
+
+    overlay.addEventListener('click', closeQuestion);
+  </script>
+</body>
+</html>
