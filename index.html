@@ -22,9 +22,11 @@
             margin-top: 20px;
         }
 
-        #questionimage 
-        {width: 100%;
-        }
+   #questionImage {
+    width: 100%;             /* Ensure image takes up 100% of its container's width */
+    height: auto;            /* Maintain the aspect ratio */
+    object-fit: contain;     /* Prevent the image from being stretched or cropped */
+}
         
         .quiz-container {
             background-color: rgba(255, 255, 255, 0.9);
@@ -124,10 +126,11 @@
     <div class="quiz-container" id="quizContainer">
         <div id="questionContainer">
             <div class="question-number" id="questionNumber"></div>
-            <div class="question" id="questionText"></div>
             <div class="image-container">
                 <img id="questionImage" src="" alt="Question Image">
             </div>
+            <div class="question" id="questionText"></div>
+            
             <ul class="answer-options" id="answerOptions"></ul>
             <button class="submit-btn" id="nextButton">Next</button>
         </div>
