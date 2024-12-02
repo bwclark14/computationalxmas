@@ -279,40 +279,41 @@
             document.getElementById("nextButton").disabled = false;
         }
 
-        function nextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                loadQuestion();
-            } else {
-                showResults();
-            }
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        showResults();  // Ensure this runs after the last question
+    }
+}
+
+function showResults() {
+    document.getElementById("quizContainer").style.display = 'none'; // Hide quiz container
+    const resultContainer = document.getElementById("resultContainer");
+    const resultMessage = document.getElementById("resultMessage");
+    const resultList = document.getElementById("resultList");
+
+    let correctAnswers = 0;
+    resultList.innerHTML = '';  // Clear any previous results
+
+    questions.forEach((question, index) => {
+        const listItem = document.createElement("div");
+        if (userAnswers[index] === question.correct) {
+            correctAnswers++;
+            listItem.classList.add("correct");
+            listItem.textContent = `Q${index + 1}: Correct!`;
+        } else {
+            listItem.classList.add("incorrect");
+            listItem.textContent = `Q${index + 1}: Incorrect. The correct answer is "${question.correct}".`;
         }
+        resultList.appendChild(listItem);
+    });
 
-        function showResults() {
-            document.getElementById("quizContainer").style.display = 'none';
-            const resultContainer = document.getElementById("resultContainer");
-            const resultMessage = document.getElementById("resultMessage");
-            const resultList = document.getElementById("resultList");
+    resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`;
+    resultContainer.style.display = 'block'; // Show results
+}
 
-            let correctAnswers = 0;
-            resultList.innerHTML = '';
-
-            questions.forEach((question, index) => {
-                const listItem = document.createElement("div");
-                if (userAnswers[index] === question.correct) {
-                    correctAnswers++;
-                    listItem.classList.add("correct");
-                    listItem.textContent = `Q${index + 1}: Correct!`;
-                } else {
-                    listItem.classList.add("incorrect");
-                    listItem.textContent = `Q${index + 1}: Incorrect. The correct answer is "${question.correct}".`;
-                }
-                resultList.appendChild(listItem);
-            });
-
-            resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`;
-            resultContainer.style.display = 'block';
-        }
 
         function restartQuiz() {
             currentQuestionIndex = 0;
