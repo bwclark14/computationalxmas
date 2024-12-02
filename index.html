@@ -148,6 +148,7 @@
                 correct: "4",
                 image: "1.png"
             },
+                   /*
             { 
                 question: "You are creating snowflake decorations. Each snowflake takes 6 cuts and 4 folds. How many folds will you make if you create 5 snowflakes?", 
                 options: ["20", "24", "30", "40"], 
@@ -250,6 +251,7 @@
                 correct: "Red",
                 image: "18.png"
             },
+            */
             { 
                 question: "You can throw 35 snowballs during a 30 minute snowball fight. How many snowballs do you throw in total after 2 hours of fighting?", 
                 options: ["70", "105", "140", "175"], 
@@ -331,21 +333,22 @@ alert("setting to 0");
         const listItem = document.createElement("div");
 
         // Check if the user's answer matches the correct one
-        if (userAnswers[index] === question.correct) {
-            correctAnswers++;
-            listItem.classList.add("correct");
-            listItem.textContent = 'Q${index + 1}: Correct!';
-        } else {
-            listItem.classList.add("incorrect");
-            listItem.textContent = 'Q${index + 1}: Incorrect.';
-        }
+      if (userAnswers[index] === question.correct) {
+    correctAnswers++;
+    listItem.classList.add("correct");
+    listItem.textContent = `Q${index + 1}: Correct!`; 
+          alert("checkec correct");
+} else {
+    listItem.classList.add("incorrect");
+    listItem.textContent = `Q${index + 1}: Incorrect.`; 
+          alert("checkec incorrect");
+}
 
-        // Append each result to the result list
-        resultList.appendChild(listItem);
-    });
+// Append each result to the result list
+resultList.appendChild(listItem);
 
-    // Display the total score
-    resultMessage.textContent = 'You got ${correctAnswers} out of ${questions.length} correct!';
+// Display the total score
+resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`; 
 }
 
 
