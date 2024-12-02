@@ -300,12 +300,13 @@
         }
 
 function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-    } else {
-        showResults();  // Ensure this runs after the last question
-    }
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    loadQuestion();
+  } else {
+    // Call showResults after the last question
+    showResults();
+  }
 }
 
 function showResults() {
@@ -313,6 +314,8 @@ function showResults() {
     const resultContainer = document.getElementById("resultContainer");
     const resultMessage = document.getElementById("resultMessage");
     const resultList = document.getElementById("resultList");
+    
+    resultContainer.style.display = 'block'; // Show results
 
     let correctAnswers = 0;
     resultList.innerHTML = '';  // Clear any previous results
@@ -331,7 +334,7 @@ function showResults() {
     });
 
     resultMessage.textContent = `You got ${correctAnswers} out of ${questions.length} correct!`;
-    resultContainer.style.display = 'block'; // Show results
+    
 }
 
 
