@@ -134,13 +134,13 @@
             <ul class="answer-options" id="answerOptions"></ul>
             <button class="submit-btn" id="nextButton">Next</button>
         </div>
-         </div>
+    
         <div class="result-container" id="resultContainer">
             <div class="result-message" id="resultMessage"></div>
             <div class="result-list" id="resultList"></div>
             <button class="submit-btn" id="restartButton">Restart Quiz</button>
         </div>
-   
+        </div>
     <script>
                const questions = [
             { 
@@ -311,7 +311,7 @@ function nextQuestion() {
 }
 
 function showResults() {
-    document.getElementById("quizContainer").style.display = 'none'; // Hide quiz container
+    document.getElementById("questionContainer").style.display = 'none'; // Hide question container
     const resultContainer = document.getElementById("resultContainer");
     const resultMessage = document.getElementById("resultMessage");
     const resultList = document.getElementById("resultList");
