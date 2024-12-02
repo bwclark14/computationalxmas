@@ -49,6 +49,9 @@
         .answer-option:hover {
             background-color: red;
         }
+        .selected {
+            background-color: #f39c12; /* Selected option will turn yellow */
+        }
         .image-container {
             margin: 20px 0;
         }
@@ -231,16 +234,17 @@
                     const li = document.createElement("li");
                     li.classList.add("answer-option");
                     li.textContent = option;
-                    li.addEventListener("click", () => checkAnswer(option, question.correct));
+                    li.addEventListener("click", () => checkAnswer(option, question.correct, li));
                     answerOptions.appendChild(li);
                 });
             }
         }
 
-        function checkAnswer(selected, correct) {
+        function checkAnswer(selected, correct, liElement) {
             if (selected === correct) {
                 score++;
             }
+            liElement.classList.add('selected');
             document.getElementById("nextButton").disabled = false;
         }
 
