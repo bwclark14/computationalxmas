@@ -42,9 +42,9 @@
             list-style-type: none;
             padding: 0;
             display: flex;
-            justify-content: space-between; /* Ensure even spacing */
-            gap: 10px; /* Space between the options */
-            flex-wrap: wrap; /* Allow options to wrap on smaller screens */
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .answer-option {
             background-color: #3498db;
@@ -53,16 +53,16 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            flex: 1 1 25%; /* Flex 1 with a minimum of 25% width */
-            max-width: 150px; /* Maximum width to prevent buttons from growing too large */
+            flex: 1 1 25%;
+            max-width: 150px;
             text-align: center;
-            margin: 5px; /* Optional: add spacing around each button */
+            margin: 5px;
         }
         .answer-option:hover {
             background-color: red;
         }
         .selected {
-            background-color: #f39c12; /* Selected option will turn yellow */
+            background-color: #f39c12;
         }
         .image-container {
             margin: 20px 0;
@@ -120,7 +120,6 @@
             <button class="submit-btn" id="restartButton">Restart Quiz</button>
         </div>
     </div>
-
     <script>
                const questions = [
             { 
@@ -245,10 +244,9 @@
             }
         ];
 
-              let currentQuestionIndex = 0;
+            let currentQuestionIndex = 0;
         let userAnswers = [];
         
-        // Function to load the current question
         function loadQuestion() {
             const questionData = questions[currentQuestionIndex];
             const questionNumber = document.getElementById("questionNumber");
@@ -298,7 +296,7 @@
 
             let correctAnswers = 0;
             resultList.innerHTML = '';
-            
+
             questions.forEach((question, index) => {
                 const listItem = document.createElement("div");
                 if (userAnswers[index] === question.correct) {
